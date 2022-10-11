@@ -1,0 +1,23 @@
+void moistCrawl (int wait, int movement) {
+    for (int a = 0; a<halfpix; a++) {
+      int firstpix = 0;
+      int      hue   = firstpix + percentageMoistureRight * 65536L / strip.numPixels();
+      uint32_t color = strip.gamma32(strip.ColorHSV(hue)); // hue -> RGB
+      strip.setPixelColor(a, color);
+      strip.show();
+      delay(movement);
+      strip.setPixelColor(a,strip.Color(0,0,0));
+      strip.show();
+    }
+    for (int b = halfpix; b<strip.numPixels(); b++) { 
+      int firstpix = 0;
+      int      hue   = firstpix + percentageMoistureLeft * 65536L / strip.numPixels();
+      uint32_t color = strip.gamma32(strip.ColorHSV(hue)); // hue -> RGB
+      strip.setPixelColor(b, color);
+      strip.show();
+      delay(movement);
+      strip.setPixelColor(b,strip.Color(0,0,0));
+      strip.show();
+      }
+  delay(wait);
+}
